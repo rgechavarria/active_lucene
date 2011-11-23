@@ -20,7 +20,7 @@ module ActiveLucene
             attributes = {}
             doc(score_doc.doc).fields.each do |field|
               attributes.store field.name, field.string_value
-              highlight = highlighter.get_best_fragment(Analyzer.new, ALL, field.string_value)
+              highlight = highlighter.get_best_fragment(StandardAnalyzer.new(Version::LUCENE_34), ALL, field.string_value)
               attributes[:highlight] = highlight if highlight
             end
             search_result.add_document attributes

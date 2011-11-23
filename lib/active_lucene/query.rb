@@ -22,7 +22,7 @@ module ActiveLucene
     end
 
     def self.for_string(string)
-      StandardQueryParser.new(Analyzer.new).parse(string, ALL)
+      StandardQueryParser.new(StandardAnalyzer.new(Version::LUCENE_34)).parse(string, ALL)
     end
   end
 end

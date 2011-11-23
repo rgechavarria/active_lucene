@@ -3,7 +3,7 @@ module ActiveLucene
     class Writer < IndexWriter
       def initialize
         overwrite = Dir[PATH + '/*'].size < 1
-        super Index.directory, Analyzer.new, overwrite, IndexWriter::MaxFieldLength::UNLIMITED
+        super Index.directory, StandardAnalyzer.new(Version::LUCENE_34), overwrite, IndexWriter::MaxFieldLength::UNLIMITED
         yield self
         close
       end
