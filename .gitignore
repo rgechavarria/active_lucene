@@ -3,3 +3,4 @@ pkg
 spec/db
 db
 .DS_Store
+.redcar/
