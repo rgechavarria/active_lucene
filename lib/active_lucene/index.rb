@@ -1,7 +1,9 @@
 module ActiveLucene
-  module Index
-    PATH = "#{APP_ROOT}/db/lucene/#{APP_ENV}"
-    @@path = PATH
+  module Index    
+    @@path = nil
+    def initialize
+      @@path = "#{APP_ROOT}/db/lucene/#{APP_ENV}" unless @@path
+    end
 
     def self.directory
       FSDirectory.open java.io.File.new(@@path)
