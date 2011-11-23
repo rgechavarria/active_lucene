@@ -41,7 +41,7 @@ For more examples, please refer to the specs.
 To use it in rails
 config/initializer/active_lucene.rb
 <pre><code>
-  ActiveLucene::Index.path = "#{Rails.root}/tmp/db/lucene/#{Rails.env}"
+  ActiveLucene::Index::PATH = "#{Rails.root}/tmp/db/lucene/#{Rails.env}"
 </code></pre>
 
 h2. LICENSE:
