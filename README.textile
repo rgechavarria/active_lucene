@@ -22,9 +22,9 @@ Advertise.search "param2:value OR param3:lorem"
 
 Advertise.search :param1 => 'value 1', :param2 => 'value'
 
-Advertise.serach(:param1 => 'va?ue').first.highlight
+Advertise.search(:param1 => 'va?ue').first.highlight
 
-Advertise.serach(:param1 => 'va?ue').total_pages</code></pre>
+Advertise.search(:param1 => 'va?ue').total_pages</code></pre>
 
 Advertise#search accepts as a parameter any query supported by Lucene. For more information:
 
@@ -37,6 +37,12 @@ The pagination is supposed to be compatible with will_paginate:
 http://github.com/mislav/will_paginate
 
 For more examples, please refer to the specs.
+
+To use it in rails
+config/initializer/active_lucene.rb
+<pre><code>
+  ActiveLucene::Index.path = "#{Rails.root}/tmp/db/lucene/#{Rails.env}"
+</code></pre>
 
 h2. LICENSE:
 
