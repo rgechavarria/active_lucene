@@ -10,8 +10,9 @@ module ActiveLucene
       end
 
       def search(param, opts)
-        page = (opts[:page] || 1).to_i
-        query = Query.for(param)
+        page = (opts[:page] || 1).to_i        
+        query = Query.for(param,opts)
+          
         highlighter = Highlighter.new(QueryScorer.new(query))
         top_docs = super(query, nil, page * Document::PER_PAGE)
         score_docs = top_docs.scoreDocs 

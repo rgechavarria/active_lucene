@@ -19,7 +19,7 @@ module ActiveLucene
       end
       document.add Field.new ID, @id, Field::Store::YES, Field::Index::NOT_ANALYZED
       document.add Field.new ALL, _all.join(' '), Field::Store::NO, Field::Index::ANALYZED
-      document.add Field.new TYPE, self.class.to_s, Field::Store::YES, Field::Index::NOT_ANALYZED
+      document.add Field.new TYPE, self.class.to_s, Field::Store::YES, Field::Index::ANALYZED
       Index::Writer.write document
     end
 
@@ -56,7 +56,11 @@ module ActiveLucene
     end
 
     def self.search(param, opts = {})
-      Index::Searcher.search(param, opts)
+      if param.instance_of? Symbol
+        Index::Searcher.search(param, opts.merge({:all_search => true, :class => new.class.to_s}))
+      else
+        Index::Searcher.search(param, opts)
+      end
     end
 
     def self.columns

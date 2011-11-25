@@ -1,11 +1,11 @@
 module ActiveLucene
   class Query
 
-    def self.for(param)
+    def self.for(param, opts={})
       if param.instance_of? Hash
         for_attributes param
       elsif param.instance_of? Symbol
-        MatchAllDocsQuery.new
+        for_string "#{TYPE}:#{opts[:class]}"
       else
         for_string param
       end
